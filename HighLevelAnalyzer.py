@@ -30,7 +30,7 @@ class Hla(HighLevelAnalyzer):
 			0x0C: {'Tx':['Reset', 'none'], 'Rx':[]},
 			0x0D: {'Tx':['Play', 'none'], 'Rx':[]},
 			0x0E: {'Tx':['Pause', 'none'], 'Rx':[]},
-			0x0F: {'Tx':['Play track {} from folder {}', 'msb:lsb'], 'Rx':[]},
+			0x0F: {'Tx':['Play track {} from folder {}', 'lsb:msb'], 'Rx':[]},
 			0x10: {'Tx':['Audio amplification setting to {}', 'lsb'], 'Rx':[]},
 			0x11: {'Tx':['Set all repeat playback', 'lsb'], 'Rx':[]},
 			0x12: {'Tx':['Play track {} from MP3 folder', 'msb+lsb' ], 'Rx':[]},
@@ -77,6 +77,8 @@ class Hla(HighLevelAnalyzer):
 				message = info[0].format(msb * 256 + lsb)
 			elif (info[1] == 'msb:lsb'):
 				message = info[0].format(msb,lsb)
+			elif (info[1] == 'lsb:msb'):
+				message = info[0].format(lsb,msb)
 			elif (info[1] == 'parsemsb+lsb'):
 				if (info[2][msb] == ''):
 					message = info[0]
