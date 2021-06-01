@@ -2,6 +2,7 @@ from saleae.analyzers import HighLevelAnalyzer, AnalyzerFrame, StringSetting, Nu
 
 class Hla(HighLevelAnalyzer):
 	data_type = ChoicesSetting(['Tx', 'Rx'])
+	whenver_wrong_data_type_assign_was_found = ChoicesSetting(['Just show me that I am wrong', 'Flip autamatically'])
 
 	result_types = {
 		'match': {
@@ -67,7 +68,31 @@ class Hla(HighLevelAnalyzer):
 		except:
 			print("Unknown command: %x %x %x" % (cmd, msb, lsb))
 			return ''
+
+		newType = ''
+		if (self.data_type == 'Tx'):
+			newType = 'Rx'
+		else:
+			newType = 'Tx'
 			
+		if (len(info)<2):
+			## WRONG TRANSMISSION TYPE ASSIGN!
+			if (self.whenver_wrong_data_type_assign_was_found == 'Flip autamatically'):
+				self.data_type = newType
+				info = cmdDict[cmd][self.data_type]
+				print("A cmd=0x%x type=%s len(info) = %d" % (cmd, self.data_type, len(info)))
+			else:
+				return '['+ hex(cmd) + '] ' + 'WRONG DATA TYPE ASSIGNED! This should be some kind of ' + newType + ' data'
+
+		if ((info[1] == 'none') and (self.data_type == 'Tx') and ((msb !=0) or (lsb!=0))):
+			## WRONG TRANSMISSION TYPE ASSIGN!
+			if (self.whenver_wrong_data_type_assign_was_found == 'Flip autamatically'):
+				self.data_type = newType
+				info = cmdDict[cmd][self.data_type]
+				print("B cmd=0x%x type=%s len(info) = %d" % (cmd, self.data_type, len(info)))
+			else:
+				return '['+ hex(cmd) + '] ' + 'WRONG DATA TYPE ASSIGNED! This should be some kind of ' + newType + ' data'
+
 		if (info[1] == 'none'):
 			message = info[0]
 		else:
