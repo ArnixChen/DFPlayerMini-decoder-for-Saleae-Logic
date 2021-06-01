@@ -2,7 +2,7 @@
   "name": "DFPlayerMini Decoder",
   "apiVersion": "1.0.0",
   "author": "Arnix",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Decode serial Rx/Tx data for DFPlayer Mini",
   "extensions": {
     "DFPlayerMini Decoder": {
