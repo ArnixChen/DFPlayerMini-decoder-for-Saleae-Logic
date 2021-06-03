@@ -48,7 +48,7 @@ class Hla(HighLevelAnalyzer):
 			0x3D: {'Tx':[], 'Rx':['SD Card finish playing track {}', 'msb+lsb']},
 			0x3E: {'Tx':[], 'Rx':['USB cable to PC finish playing track {}', 'msb+lsb']},
 			0x3F: {'Tx':['Query current online storage', 'none'], 'Rx':['(PowerOn Report) Current online storage: {}', 'parselsb', { 0x0:'None', 0x01:'USB Stic', 0x02:'SD Card', 0x03:'USB Stick & SD Card', 0x04:'PC', 0x0F:'SD Card & USB Stick & PC'}]},
-			0x40: {'Tx':[], 'Rx':['Module returns error', 'parselsb', {1:'Module Busy', 2:'Currently sleep mode', 3:'Serial rx error', 4:'Checksum incorrect', 5:'Track out of scope', 6:'Track not found', 7:'Insertion error', 8:'SD card reading failed', 9:'Entered into sleep mode'}]},
+			0x40: {'Tx':[], 'Rx':['Module returns error : {}', 'parselsb', {1:'Module Busy', 2:'Currently sleep mode', 3:'Serial rx error', 4:'Checksum incorrect', 5:'Track out of scope', 6:'Specified track is not found', 7:'Insertion error', 8:'SD card reading failed', 9:'Entered into sleep mode'}]},
 			0x41: {'Tx':[], 'Rx':['Module ACK', 'none']},
 			0x42: {'Tx':['Query current status', 'none'], 'Rx':['Report current status: {}', 'parsemsb+lsb', {0:'' ,1:'USB Stick', 2:'SD Card', 3:'Module in sleep mode'}, {0:'Stopped', 1:'Playing', 2:'Paused'}]},
 			0x43: {'Tx':['Query current volume', 'none'], 'Rx':['Report current volume', 'lsb']},
