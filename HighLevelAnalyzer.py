@@ -51,7 +51,7 @@ class Hla(HighLevelAnalyzer):
 			0x40: {'Tx':[], 'Rx':['Module returns error : {}', 'parselsb', {1:'Module Busy', 2:'Currently sleep mode', 3:'Serial rx error', 4:'Checksum incorrect', 5:'Track out of scope', 6:'Specified track is not found', 7:'Insertion error', 8:'SD card reading failed', 9:'Entered into sleep mode'}]},
 			0x41: {'Tx':[], 'Rx':['Module ACK', 'none']},
 			0x42: {'Tx':['Query current status', 'none'], 'Rx':['Report current status: {}', 'parsemsb+lsb', {0:'' ,1:'USB Stick', 2:'SD Card', 3:'Module in sleep mode'}, {0:'Stopped', 1:'Playing', 2:'Paused'}]},
-			0x43: {'Tx':['Query current volume', 'none'], 'Rx':['Report current volume', 'lsb']},
+			0x43: {'Tx':['Query current volume', 'none'], 'Rx':['Current volume is {}', 'lsb']},
 			0x44: {'Tx':['Query current EQ', 'none'], 'Rx':['Report current EQ', 'parselsb', {0:'Normal', 1:'Pop', 2:'Rock', 3:'Jazz', 4:'Classic', 5:'Bass'}]},
 			0x47: {'Tx':['Query number of tracks in root of USB Stick', 'none'], 'Rx':['There are {} tracks in root of USB Stick', 'msb+lsb']},
 			0x48: {'Tx':['Query number of tracks in root of SD Card', 'none'], 'Rx':['There are {} tracks in root of SD Card', 'msb+lsb']},
